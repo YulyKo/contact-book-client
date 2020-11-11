@@ -6,13 +6,15 @@ const GET_ALL_CONTACTS_URL = `${API_URL}/contacts`;
 
 export default createStore({
   state: {
-    contacts: null,
+    contacts: [],
+  },
+  getters: {
+    getAllContacts(state) { return state.contacts; },
   },
   mutations: {
     setAllContacts(state, contacts) {
       state.contacts = contacts;
     },
-    getAllcontacts(state) { return state.contacts; },
   },
   actions: {
     GET_ALL_CONTACT_FROM_API({ commit }) {
