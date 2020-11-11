@@ -1,12 +1,12 @@
 <template>
-  <table>
+  <table border="1" style="width: 79vw;">
     <tr>
       <th>Name</th>
       <th>Phone</th>
       <th>Date of Birth</th>
       <th>Actions</th>
     </tr>
-    <tr v-for="(id, contact) in conntacts" :key="id">
+    <tr v-for="(contact, id) in contacts" :key="id">
       <td>
         {{ contact.name }}
       </td>
@@ -30,7 +30,7 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      courses: 'getAllContacts',
+      contacts: 'getAllContacts',
     }),
   },
   beforeCreate() {
@@ -39,6 +39,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="css">
+  tr {
+    text-align: center;
+  }
 </style>
