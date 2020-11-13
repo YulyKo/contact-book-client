@@ -17,7 +17,8 @@
         {{ contact.dateOfBirth }}
       </td>
       <td>
-        <button>Edit</button>
+        <router-link
+          :to="`/edit/${contact.id}`">Edit</router-link>
         <button>Delete</button>
       </td>
     </tr>
@@ -25,12 +26,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   computed: {
     ...mapGetters({
       contacts: 'getAllContacts',
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      setContactForEdit: 'setContactForEdit',
     }),
   },
   beforeCreate() {
