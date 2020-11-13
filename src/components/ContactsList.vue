@@ -17,20 +17,30 @@
         {{ contact.dateOfBirth }}
       </td>
       <td>
-        <button>Edit</button>
-        <button>Delete</button>
+        <router-link
+          :to="`/edit/${contact.id}`">Edit</router-link>
+        <delete-button :id="contact.id"></delete-button>
       </td>
     </tr>
   </table>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
+import DeletingButtonVue from './DeletingButton.vue';
 
 export default {
+  components: {
+    deleteButton: DeletingButtonVue,
+  },
   computed: {
     ...mapGetters({
       contacts: 'getAllContacts',
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      setContactForEdit: 'setContactForEdit',
     }),
   },
   beforeCreate() {
