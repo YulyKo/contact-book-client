@@ -45,6 +45,7 @@ export default {
         dateOfBirth: new Date(this.date),
       };
       this.postContactToAPI(data);
+      this.$router.push('/');
     },
   },
 };
