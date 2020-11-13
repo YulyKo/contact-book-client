@@ -19,7 +19,7 @@
       <td>
         <router-link
           :to="`/edit/${contact.id}`">Edit</router-link>
-        <button>Delete</button>
+        <delete-button :id="contact.id"></delete-button>
       </td>
     </tr>
   </table>
@@ -27,8 +27,12 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
+import DeletingButtonVue from './DeletingButton.vue';
 
 export default {
+  components: {
+    deleteButton: DeletingButtonVue,
+  },
   computed: {
     ...mapGetters({
       contacts: 'getAllContacts',

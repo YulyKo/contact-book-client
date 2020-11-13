@@ -5,6 +5,7 @@ const API_URL = 'http://localhost:8080';
 const GET_ALL_CONTACTS_URL = `${API_URL}/contacts`;
 const POST_CONTACT_URL = `${API_URL}/contacts`;
 const PUT_CONTACT_URL = `${API_URL}/contacts`;
+const DELETE_CONTACT_URL = `${API_URL}/contacts`;
 
 export default createStore({
   state: {
@@ -43,6 +44,13 @@ export default createStore({
         }
       }
     },
+    removeContactFromState(state, id) {
+      for (let index = 0; index < state.contacts.length; index += 1) {
+        if (state.contacts[index].id === +id) {
+          state.contacts.splice(index, 1);
+        }
+      }
+    },
   },
   actions: {
     GET_ALL_CONTACT_FROM_API({ commit }) {
@@ -65,6 +73,12 @@ export default createStore({
     },
     GET_CONTACT_BY_ID({ commit }, id) {
       commit('setContactForEdit', id);
+    },
+    DELETE_CONTACT_FROM_API({ commit }, id) {
+      axios.delete(`${DELETE_CONTACT_URL}/${id}`)
+        .then(() => {
+          commit('removeContactFromState', id);
+        });
     },
   },
   modules: {
